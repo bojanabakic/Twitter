@@ -42,9 +42,6 @@ public class TwitterPorukaTest {
 		assertEquals("Marko", pom.getKorisnik());
 	}
 
-	/**
-	 * Test method for {@link com.twitter.poruke.TwitterPoruka#setPoruka(java.lang.String)}.
-	 */
 	@Test (expected = java.lang.RuntimeException.class)
 	public void testSetKorisnikNull() {
 		pom.setKorisnik(null);
@@ -55,15 +52,16 @@ public class TwitterPorukaTest {
 		pom.setKorisnik("");
 	}
 	
+
+	/**
+	 * Test method for {@link com.twitter.poruke.TwitterPoruka#setPoruka(java.lang.String)}.
+	 */
 	public void testSetPoruka() {
 		pom.setPoruka("Moj prvi tweet.");
 		
 		assertEquals("Moj prvi tweet.", pom.getPoruka());
 	}
 
-	/**
-	 * Test method for {@link com.twitter.poruke.TwitterPoruka#toString()}.
-	 */
 	@Test (expected = java.lang.RuntimeException.class)
 	public void testSetPorukaNull() {
 		pom.setPoruka(null);
@@ -85,10 +83,19 @@ public class TwitterPorukaTest {
 				+ "Znas li da moj jastuk i tvoja kosa izvrsno pasu?! Gej stop.");
 	}
 	
+	/**
+	 * Test method for {@link com.twitter.poruke.TwitterPoruka#toString()}.
+	 */
 	public void testToString() {
 		pom.setKorisnik("Marko");
 		pom.setPoruka("Moj prvi tweet.");
 		
 		assertEquals("KORISNIK:Marko PORUKA:Moj prvi tweet.", pom.toString());
+	}
+	
+	@Test
+	public void testToStringFaliPoruka() {
+		pom.setKorisnik("Marko");
+		assertEquals("KORISNIK:Marko PORUKA:null", pom.toString());
 	}
 }
