@@ -1,10 +1,13 @@
 import static org.junit.Assert.*;
 
+import java.util.LinkedList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.twitter.Twitter;
+import com.twitter.poruke.TwitterPoruka;
 
 /**
  * 
@@ -21,7 +24,7 @@ public class TwitterTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		pom = new Twitter();
+		Twitter pom;
 	}
 
 	/**
@@ -37,7 +40,13 @@ public class TwitterTest {
 	 */
 	@Test
 	public void testVratiSvePoruke() {
+		String korisnik = "Marko";
+		String poruka = "Moj prvi tweet.";
 		
+		for (int i = 0; i < 15; i++) {
+			pom.unesi(korisnik, poruka);
+		}
+		assertEquals(15, pom.vratiSvePoruke().size());
 	}
 
 	/**
@@ -45,7 +54,7 @@ public class TwitterTest {
 	 */
 	@Test
 	public void testUnesi() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -53,7 +62,7 @@ public class TwitterTest {
 	 */
 	@Test
 	public void testVratiPoruke() {
-		fail("Not yet implemented");
+		
 	}
 
 }
