@@ -1,13 +1,11 @@
 import static org.junit.Assert.*;
 
-import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.twitter.Twitter;
-import com.twitter.poruke.TwitterPoruka;
 
 /**
  * 
@@ -24,7 +22,7 @@ public class TwitterTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		Twitter pom;
+		pom = new Twitter();
 	}
 
 	/**
