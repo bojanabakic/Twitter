@@ -32,7 +32,7 @@ public class TwitterTest {
 	}
 
 	@Test
-	public void testVratiSvePoruke() {
+	public void testVratiSvePorukeProvjeraDuzine() {
 		String korisnik = "Marko";
 		String poruka = "Moj prvi tweet.";
 		
@@ -42,6 +42,32 @@ public class TwitterTest {
 		assertEquals(15, pom.vratiSvePoruke().size());	
 	}
 	
+	@Test
+	public void testVratiSvePorukeProvjeraSadrzajaPoslednje() {
+		LinkedList<TwitterPoruka> postojecePoruke = pom.vratiSvePoruke();
+		
+		pom.unesi("Marko", "Ovo je moj prvi tweet.");
+		
+		assertEquals("Marko",postojecePoruke.getLast().getKorisnik());
+		assertEquals("Ovo je moj prvi tweet.", postojecePoruke.getLast().getPoruka());
+	}
+	
+	@Test
+	public void testVratiSvePorukeProvjeraSadrzajaSvihUnijetih() {
+		LinkedList<TwitterPoruka> postojecePoruke = pom.vratiSvePoruke();
+		
+		pom.unesi("Marko", "Ovo je moj prvi tweet.");
+		pom.unesi("Janko", "Ja pisem tweet danas.");
+		pom.unesi("Nikola", "Smor brate.");
+		
+		assertEquals("Marko",postojecePoruke.get(0).getKorisnik());
+		assertEquals("Janko",postojecePoruke.get(1).getKorisnik());
+		assertEquals("Nikola",postojecePoruke.get(2).getKorisnik());
+		
+		assertEquals("Ovo je moj prvi tweet.", postojecePoruke.get(0).getPoruka());
+		assertEquals("Ja pisem tweet danas.", postojecePoruke.get(1).getPoruka());
+		assertEquals("Smor brate.", postojecePoruke.get(2).getPoruka());
+	}
 
 	@Test
 	public void testUnesi() {
